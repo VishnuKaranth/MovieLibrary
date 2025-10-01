@@ -1,18 +1,9 @@
 import '~/styles/globals.css';
-
 import { type Metadata } from "next";
 import { Geist } from "next/font/google";
-
-import { TRPCReactProvider } from "~/trpc/react";
 import Header from "~/components/header/Header";
-import Carousel from "~/components/carousel/Carousel";
-import ActionMoviesSection from "~/components/genre/ActionMoviesSection";
-import ComedyMoviesSection from "~/components/genre/ComedyMovieSection";
-import { Drama } from "lucide-react";
-import DramaMoviesSection from "~/components/genre/DramaMoviesSection";
-import HorrorMoviesSection from "~/components/genre/HorrorMovieSection";
-import SciFiMoviesSection from "~/components/genre/SciFiMoviesSection";
 import Footer from "~/components/footer/Footer";
+import { WatchlistProvider } from '~/hooks/WatchlistContext'; // ✅ Import the provider
 
 export const metadata: Metadata = {
   title: "Movie Library",
@@ -31,25 +22,12 @@ export default function MainLayout({
   return (
     <html lang="en" className={`${geist.variable}`}>
       <body className="bg-black text-white">
-        <TRPCReactProvider>
-          {/* 🔹 Header */}
-          <Header />
-
-          {/* 🔹 Top Carousel */}
-          <Carousel />
-
-          {/* 🔹 Genre Sections */}
-          <ActionMoviesSection />
-          <ComedyMoviesSection />
-          <DramaMoviesSection />
-          <HorrorMoviesSection />
-          <SciFiMoviesSection />
-
-          {/* 🔹 Footer */}
-          <Footer />
-          {/* 🔹 Page Content */}
-          {children}
-        </TRPCReactProvider>
+          <WatchlistProvider> 
+          <Header /> 
+           {/* ✅ Global */}
+          <main>{children}</main> 
+          </WatchlistProvider>{/* ✅ Page-specific content goes here */}
+          <Footer />   {/* ✅ Global */}
       </body>
     </html>
   );

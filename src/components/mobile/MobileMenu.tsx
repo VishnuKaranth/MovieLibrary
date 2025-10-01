@@ -1,11 +1,41 @@
 "use client";
 
-import Link from "next/link";
 import { Menu } from "lucide-react";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import React, { useMemo, useCallback } from "react";
 
+// ================= Mobile Menu =================
 export function MobileMenu() {
+  // Main menu links
+  const menuLinks = useMemo(
+    () => [
+      { href: "/", label: "Home" },
+      { href: "/watchlist", label: "My Watchlist" },
+    ],
+    []
+  );
+
+  // Genre links
+  const genres = useMemo(
+    () => [
+      { id: "action", label: "Action" },
+      { id: "comedy", label: "Comedy" },
+      { id: "drama", label: "Drama" },
+      { id: "horror", label: "Horror" },
+      { id: "scifi", label: "Sci-Fi" },
+    ],
+    []
+  );
+
+  // Smooth scroll handler
+  const handleScroll = useCallback((id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, []);
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -13,42 +43,34 @@ export function MobileMenu() {
           <Menu className="h-6 w-6" />
         </Button>
       </SheetTrigger>
+
       <SheetContent side="left" className="w-64 bg-gray-900 text-gray-100">
         <div className="flex flex-col gap-4 mt-6">
-          <Link href="/" className="hover:text-indigo-400">
-            Home
-          </Link>
-          <Link href="/watchlist" className="hover:text-indigo-400">
-            My Watchlist
-          </Link>
+          {/* Main Links */}
+          {menuLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="hover:text-indigo-400 transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
+
+          {/* Genre Links */}
           <div>
             <p className="font-semibold mb-2">Genres</p>
             <ul className="flex flex-col gap-1 pl-2">
-              <li>
-                <Link href="/genre/action" className="hover:text-indigo-400">
-                  Action
-                </Link>
-              </li>
-              <li>
-                <Link href="/genre/comedy" className="hover:text-indigo-400">
-                  Comedy
-                </Link>
-              </li>
-              <li>
-                <Link href="/genre/drama" className="hover:text-indigo-400">
-                  Drama
-                </Link>
-              </li>
-              <li>
-                <Link href="/genre/horror" className="hover:text-indigo-400">
-                  Horror
-                </Link>
-              </li>
-              <li>
-                <Link href="/genre/sci-fi" className="hover:text-indigo-400">
-                  Sci-Fi
-                </Link>
-              </li>
+              {genres.map((genre) => (
+                <li key={genre.id}>
+                  <button
+                    onClick={() => handleScroll(genre.id)}
+                    className="hover:text-indigo-400 transition-colors text-left w-full focus:outline-none"
+                  >
+                    {genre.label}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
