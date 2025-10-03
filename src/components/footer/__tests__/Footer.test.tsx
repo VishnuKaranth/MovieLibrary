@@ -10,12 +10,11 @@ describe('Footer', () => {
 
   it('renders all social links', () => {
     render(<Footer />)
-    
-    // Check if all social links are present
+
     const socialLinks = [
       'https://www.linkedin.com/in/vishnu-karanth-3ba772229',
       'https://github.com/vishnukaranth/',
-      'mailto:vishnukaranth07@gmail.com'
+      'mailto:vishnukaranth04@gmail.com'
     ]
 
     const allLinks = screen.getAllByRole('link')
@@ -45,7 +44,7 @@ describe('Footer', () => {
 
   it('all links have correct attributes', () => {
     render(<Footer />)
-    const externalLinks = screen.getAllByRole('link', { name: '' }) // Social links with icons
+    const externalLinks = screen.getAllByRole('link', { name: '' })
     
     externalLinks.forEach(link => {
       if (link.getAttribute('href')?.startsWith('http')) {

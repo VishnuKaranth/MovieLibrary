@@ -5,7 +5,7 @@ import { Linkedin, Github, Mail } from 'lucide-react';
 const socialLinks = [
   { icon: Linkedin, href: "https://www.linkedin.com/in/vishnu-karanth-3ba772229", color: "hover:text-blue-500" },
   { icon: Github, href: "https://github.com/vishnukaranth/", color: "hover:text-gray-300" },
-  { icon: Mail, href: "mailto:vishnukaranth07@gmail.com", color: "hover:text-red-400" },
+  { icon: Mail, href: "mailto:vishnukaranth04@gmail.com", color: "hover:text-red-400" },
 ];
 
 const quickLinks = [
@@ -20,8 +20,6 @@ export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white py-12 px-6 mt-auto w-full">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-10 md:gap-16">
-
-        {/* Branding & Social */}
         <div className="flex flex-col gap-4 md:flex-1">
           <h2 className="text-2xl font-bold tracking-wide">MovieLibrary</h2>
           <p className="text-gray-400 max-w-sm">
@@ -41,8 +39,6 @@ export default function Footer() {
             ))}
           </div>
         </div>
-
-        {/* Quick Links */}
         <div className="flex flex-col gap-4 md:flex-1">
           <h3 className="text-lg font-semibold">Quick Links</h3>
           <ul className="flex flex-col gap-2 text-gray-400">
@@ -54,25 +50,22 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Contact Me Section */}
         <div className="flex flex-col gap-4 max-w-sm md:flex-1">
           <h3 className="text-lg font-semibold">Contact Me</h3>
           <p className="text-gray-400">
-            I’m a fresher and learning new things every day.  
+            I'm a fresher and learning new things every day.  
             Feel free to reach out for opportunities or collaborations.
           </p>
 
-          {/* Email Button */}
           <a
             href="mailto:vishnukaranth04@gmail.com"
             className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-md font-medium transition text-center"
           >
-            📧 Send me an Email
+            Send me an Email
           </a>
         </div>
       </div>
 
-      {/* Bottom Footer */}
       <div className="mt-10 border-t border-gray-700 pt-6 text-gray-500 text-sm text-center">
         Built with ❤️ by Vishnu
       </div>

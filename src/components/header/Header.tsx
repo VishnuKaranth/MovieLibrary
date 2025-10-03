@@ -13,7 +13,7 @@ import {
 import { SearchBar } from "../search/Searchbar";
 import { MobileMenu } from "../mobile/MobileMenu";
 
-// ================= Logo =================
+// Logo
 const Logo = React.memo(() => (
   <Link
     href="/"
@@ -26,7 +26,7 @@ const Logo = React.memo(() => (
 ));
 Logo.displayName = "Logo";
 
-// ================= Genre Dropdown =================
+// Dropdown Menu
 const GenreDropdown = React.memo(() => {
   const genres = useMemo(
     () => [
@@ -70,7 +70,7 @@ const GenreDropdown = React.memo(() => {
 });
 GenreDropdown.displayName = "GenreDropdown";
 
-// ================= Navigation Menu =================
+// Navbar
 const NavMenu = React.memo(() => {
   const menuLinks = useMemo(
     () => [
@@ -105,7 +105,6 @@ const NavMenu = React.memo(() => {
 });
 NavMenu.displayName = "NavMenu";
 
-// ================= Search Section =================
 const ProfileSection = React.memo(() => (
   <div className="hidden md:flex items-center gap-4">
     <SearchBar />
@@ -113,11 +112,11 @@ const ProfileSection = React.memo(() => (
 ));
 ProfileSection.displayName = "ProfileSection";
 
-// ================= Header =================
+
 export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-gray-900/40 backdrop-blur-xl shadow-lg border-b border-gray-700">
-  {/* Make this flex container full width */}
+
   <div className="w-full flex items-center justify-between h-16 px-4 md:px-8 text-gray-100">
     <div className="flex items-center gap-6">
       <Logo />

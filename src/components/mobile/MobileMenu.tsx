@@ -11,9 +11,8 @@ import {
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import React, { useMemo, useCallback } from "react";
 
-// ================= Mobile Menu =================
 export function MobileMenu() {
-  // Main menu links
+
   const menuLinks = useMemo(
     () => [
       { href: "/", label: "Home" },
@@ -22,7 +21,7 @@ export function MobileMenu() {
     []
   );
 
-  // Genre links
+
   const genres = useMemo(
     () => [
       { id: "action", label: "Action" },
@@ -34,7 +33,6 @@ export function MobileMenu() {
     []
   );
 
-  // Smooth scroll handler
   const handleScroll = useCallback((id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -44,22 +42,17 @@ export function MobileMenu() {
 
   return (
     <Sheet>
-      {/* Trigger button */}
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" className="text-gray-100">
           <Menu className="h-6 w-6" />
         </Button>
       </SheetTrigger>
-
-      {/* Sheet (Drawer) Content */}
       <SheetContent side="left" className="w-64 bg-gray-900 text-gray-100">
-        {/* Hidden title for accessibility */}
         <SheetTitle>
           <VisuallyHidden>Mobile Navigation Menu</VisuallyHidden>
         </SheetTitle>
 
         <div className="flex flex-col gap-4 mt-6">
-          {/* Main Links */}
           {menuLinks.map((link) => (
             <a
               key={link.href}
@@ -70,7 +63,6 @@ export function MobileMenu() {
             </a>
           ))}
 
-          {/* Genre Links */}
           <div>
             <p className="font-semibold mb-2">Genres</p>
             <ul className="flex flex-col gap-1 pl-2">

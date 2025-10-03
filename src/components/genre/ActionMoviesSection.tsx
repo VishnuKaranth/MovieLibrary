@@ -10,7 +10,7 @@ import { useWatchlist, type Movie } from '~/hooks/WatchlistContext';
 
 const ACTION_GENRE_ID = 28;
 
-// OOP: Encapsulate movie fetching
+
 class MovieService {
   static async getMoviesByGenre(genreId: number): Promise<Movie[]> {
     try {
@@ -23,7 +23,7 @@ class MovieService {
   }
 }
 
-// Component for each movie slide wrapper
+// Component for individual movie slide
 const MovieSlide: React.FC<{
   movie: Movie;
   addToWatchlist: (movie: Movie) => void;
@@ -52,7 +52,7 @@ export default function ActionMoviesSection() {
 
   const [emblaRef, embla] = useEmblaCarousel({ loop: true, skipSnaps: false, align: 'start' });
 
-  // Fetch movies
+  // Fetching the Movies
   const loadMovies = useCallback(async () => {
     setLoading(true);
     setError('');
@@ -67,7 +67,7 @@ export default function ActionMoviesSection() {
   }, []);
 
   useEffect(() =>  { loadMovies().catch(console.error); }, [loadMovies]);
-  // Autoplay
+
   useEffect(() => {
     if (!embla) return;
     const autoplay = setInterval(() => embla.scrollNext(), 3000);
@@ -77,7 +77,6 @@ export default function ActionMoviesSection() {
   const scrollPrev = useCallback(() => embla?.scrollPrev(), [embla]);
   const scrollNext = useCallback(() => embla?.scrollNext(), [embla]);
 
-  // Conditional rendering
   if (loading) return <div className="text-center text-gray-400 text-lg py-20">Loading movies...</div>;
   if (error) return <div className="text-center text-red-500 text-lg py-20">{error}</div>;
   if (!movies.length) return <div className="text-center text-gray-400 text-lg py-20">No movies found</div>;

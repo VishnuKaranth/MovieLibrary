@@ -7,7 +7,7 @@ import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { type Movie } from '~/hooks/WatchlistContext';
 
-/** Custom debounce hook */
+
 function useDebounce<T extends (...args: never[]) => void>(callback: T,delay: number,dependencies: unknown[]) {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -18,7 +18,7 @@ function useDebounce<T extends (...args: never[]) => void>(callback: T,delay: nu
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  
   }, dependencies);
 }
 
@@ -32,7 +32,7 @@ export function SearchBar() {
   const dropdownRef = useRef<HTMLUListElement>(null);
   const router = useRouter();
 
-  /** Fetch suggestions from TMDB */
+
   const fetchSuggestions = useCallback(async () => {
     const searchText = query.trim();
     if (searchText.length < 3) {
@@ -54,12 +54,12 @@ export function SearchBar() {
     }
   }, [query]);
 
-  // Debounced search
+
   useDebounce(() => { 
     void fetchSuggestions(); },
    300, [query, fetchSuggestions]);
 
-  /** Handle keyboard navigation */
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (!showSuggestions || suggestions.length === 0) return;
 
@@ -87,7 +87,6 @@ export function SearchBar() {
     }
   };
 
-  /** Close dropdown on outside click */
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (!dropdownRef.current?.contains(e.target as Node)) {
@@ -99,7 +98,6 @@ export function SearchBar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  /** Handle suggestion selection */
   const selectSuggestion = (movie: Movie) => {
     setQuery(movie.title);
     setShowSuggestions(false);

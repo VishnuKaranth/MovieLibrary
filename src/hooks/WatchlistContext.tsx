@@ -14,7 +14,6 @@ export interface Movie {
 
 const WATCHLIST_STORAGE_KEY = "movieLibraryWatchlist";
 
-// --- OOP: WatchlistManager class ---
 class WatchlistManager {
   private watchlist: Movie[] = [];
 
@@ -49,7 +48,7 @@ class WatchlistManager {
   }
 }
 
-// --- Context setup ---
+
 interface WatchlistContextType {
   watchlist: Movie[];
   addToWatchlist: (movie: Movie) => void;
@@ -59,12 +58,11 @@ interface WatchlistContextType {
 
 const WatchlistContext = createContext<WatchlistContextType | undefined>(undefined);
 
-// --- Provider ---
+
 export const WatchlistProvider = ({ children }: { children: ReactNode }) => {
   const [watchlist, setWatchlist] = useState<Movie[]>([]);
   const managerRef = React.useRef(new WatchlistManager());
 
-  // Load from localStorage on mount
   useEffect(() => {
   if (typeof window === "undefined") return;
   const stored = localStorage.getItem(WATCHLIST_STORAGE_KEY);
@@ -79,7 +77,6 @@ export const WatchlistProvider = ({ children }: { children: ReactNode }) => {
 }, []);
 
 
-  // Persist to localStorage
   useEffect(() => {
     if (typeof window === "undefined") return;
     localStorage.setItem(WATCHLIST_STORAGE_KEY, JSON.stringify(watchlist));
@@ -106,7 +103,6 @@ export const WatchlistProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// --- Custom hook ---
 export const useWatchlist = () => {
   const context = useContext(WatchlistContext);
   if (!context) throw new Error("useWatchlist must be used within a WatchlistProvider");

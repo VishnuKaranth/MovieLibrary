@@ -5,7 +5,6 @@ import { fetchTrendingMovies } from "~/lib/tmdb";
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useWatchlist, type Movie } from "~/hooks/WatchlistContext";
 
-// Encapsulate Movie fetching logic
 class MovieService {
   static async getTrendingMovies(): Promise<Movie[]> {
     try {
@@ -18,7 +17,6 @@ class MovieService {
   }
 }
 
-// Single Movie Slide component
 const MovieSlide: React.FC<{ movie: Movie; addToWatchlist: (movie: Movie) => void; isAdded: boolean; scrollPrev: () => void; scrollNext: () => void }> = ({ movie, addToWatchlist, isAdded, scrollPrev, scrollNext }) => (
   <div className="min-w-full h-full relative flex-shrink-0">
     <img
@@ -70,7 +68,7 @@ export default function MovieCarousel() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const { addToWatchlist, isInWatchlist } = useWatchlist();
 
-  // Fetch movies
+
   const loadMovies = useCallback(async () => {
     const trendingMovies = await MovieService.getTrendingMovies();
     setMovies(trendingMovies);
@@ -80,7 +78,7 @@ export default function MovieCarousel() {
     void (async () => { await loadMovies(); }) ();
   }, [loadMovies]);
 
-  // Autoplay
+  // For autoplay
   useEffect(() => {
     if (!embla) return;
     const autoplay = setInterval(() => embla.scrollNext(), 4000);
@@ -91,21 +89,26 @@ export default function MovieCarousel() {
   const scrollNext = () => embla?.scrollNext();
 
   return (
-    <section className="w-full h-[80vh] md:h-screen overflow-hidden bg-gray-950">
-      <div className="overflow-hidden h-full w-full" ref={emblaRef}>
-        <div className="flex h-full">
-          {movies.map((movie) => (
-            <MovieSlide
-              key={movie.id}
-              movie={movie}
-              addToWatchlist={addToWatchlist}
-              isAdded={isInWatchlist(movie.id)}
-              scrollPrev={scrollPrev}
-              scrollNext={scrollNext}
-            />
-          ))}
-        </div>
+  <section className="w-full h-[80vh] md:h-screen overflow-hidden bg-gray-950 relative">
+    <div className="absolute top-4 left-6 md:top-8 md:left-12 z-20">
+      <h1 className="inline-block transform -skew-x-12 px-4 py-1 text-3xl md:text-4xl font-extrabold text-white drop-shadow-lg">
+      Trending Movies
+      </h1>
+    </div>
+    <div className="overflow-hidden h-full w-full" ref={emblaRef}>
+      <div className="flex h-full">
+        {movies.map((movie) => (
+          <MovieSlide
+            key={movie.id}
+            movie={movie}
+            addToWatchlist={addToWatchlist}
+            isAdded={isInWatchlist(movie.id)}
+            scrollPrev={scrollPrev}
+            scrollNext={scrollNext}
+          />
+        ))}
       </div>
-    </section>
-  );
+    </div>
+  </section>
+);
 }

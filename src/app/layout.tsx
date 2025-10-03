@@ -3,7 +3,7 @@ import { type Metadata } from "next";
 import { Geist } from "next/font/google";
 import Header from "~/components/header/Header";
 import Footer from "~/components/footer/Footer";
-import { WatchlistProvider } from '~/hooks/WatchlistContext'; // ✅ Import the provider
+import { WatchlistProvider } from '~/hooks/WatchlistContext';
 
 export const metadata: Metadata = {
   title: "Movie Library",
@@ -24,10 +24,9 @@ export default function MainLayout({
       <body className="bg-black text-white">
           <WatchlistProvider> 
           <Header /> 
-           {/* ✅ Global */}
           <main>{children}</main> 
-          </WatchlistProvider>{/* ✅ Page-specific content goes here */}
-          <Footer />   {/* ✅ Global */}
+          </WatchlistProvider>
+          <Footer />
       </body>
     </html>
   );

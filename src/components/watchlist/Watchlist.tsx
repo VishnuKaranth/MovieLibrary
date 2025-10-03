@@ -5,7 +5,6 @@ import { MovieCard } from "../moviecard/MovieCard";
 import { InboxIcon } from "@heroicons/react/24/outline";
 import { useWatchlist, type Movie } from "~/hooks/WatchlistContext";
 
-/** Component for empty watchlist */
 const EmptyWatchlist: React.FC = () => (
   <div className="flex flex-col items-center justify-center min-h-[60vh] text-gray-400">
     <InboxIcon className="w-20 h-20 text-gray-500 mb-6" />
@@ -16,7 +15,6 @@ const EmptyWatchlist: React.FC = () => (
   </div>
 );
 
-/** Component to render watchlist movies in a responsive grid */
 const WatchlistGrid: React.FC<{
   movies: Movie[];
   onRemove: (id: number) => void;
@@ -37,7 +35,6 @@ const WatchlistGrid: React.FC<{
   </div>
 );
 
-/** Main Watchlist page */
 export default function Watchlist() {
   const { watchlist, removeFromWatchlist } = useWatchlist();
 

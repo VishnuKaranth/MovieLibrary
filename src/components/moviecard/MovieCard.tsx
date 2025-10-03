@@ -24,7 +24,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({
 }) => {
   const imageUrl = useMemo(() => `https://image.tmdb.org/t/p/w500${posterPath}`, [posterPath]);
 
-  // Button classes
+
   const addBtnClasses = isInWatchlist
     ? 'bg-gray-600 text-gray-300 cursor-not-allowed'
     : 'bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-indigo-500';

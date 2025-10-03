@@ -15,26 +15,23 @@ export default function ContactPage() {
         </p>
 
         <div className="space-y-4">
-          {/* LinkedIn */}
           <p>
             <span className="font-semibold">LinkedIn:</span>{" "}
             <Link
-              href="https://www.linkedin.com/in/your-linkedin-id"
+              href="https://www.linkedin.com/in/vishnu-karanth-3ba772229"
               target="_blank"
               className="text-indigo-400 hover:underline"
             >
-              linkedin.com/in/your-linkedin-id
+              linkedin.com/in/vishnu-karanth
             </Link>
           </p>
-
-          {/* Email */}
           <p>
             <span className="font-semibold">Email:</span>{" "}
             <a
-              href="mailto:your-email@example.com"
+              href="mailto:vishnukaranth04@gmail.com"
               className="text-indigo-400 hover:underline"
             >
-              your-email@example.com
+              vishnukaranth04@gmail.com
             </a>
           </p>
         </div>
