@@ -38,12 +38,14 @@ export function SearchBar() {
       setSuggestions([]);
       setShowSuggestions(false);
       return;
+      
     }
     try {
       const data = await searchMovies(searchText);
       setSuggestions(data.results?.slice(0, 5) || []);
       setShowSuggestions(true);
       setHighlightIndex(-1);
+      
     } catch (err) {
       console.error(err);
       setSuggestions([]);
@@ -87,6 +89,7 @@ export function SearchBar() {
     const handleClickOutside = (e: MouseEvent) => {
       if (!dropdownRef.current?.contains(e.target as Node)) {
         setShowSuggestions(false);
+        
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -98,6 +101,7 @@ export function SearchBar() {
     setQuery(movie.title);
     setShowSuggestions(false);
     router.push(`/search?query=${encodeURIComponent(movie.title)}`);
+    
   };
 
   return (
@@ -108,12 +112,14 @@ export function SearchBar() {
           if (!query.trim()) return;
           router.push(`/search?query=${encodeURIComponent(query)}`);
           setShowSuggestions(false);
+          
         }}
         className="flex w-full"
       >
         <Input
           placeholder="Search movies..."
           value={query}
+          
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={handleKeyDown}
           autoComplete="off"

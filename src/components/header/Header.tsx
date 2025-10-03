@@ -38,7 +38,6 @@ const GenreDropdown = React.memo(() => {
     ],
     []
   );
-  GenreDropdown.displayName = "GenreDropdown";
 
   const handleScroll = useCallback((id: string) => {
     const el = document.getElementById(id);
@@ -48,11 +47,11 @@ const GenreDropdown = React.memo(() => {
   }, []);
 
   return (
-    <NavigationMenuItem>
-      <NavigationMenuTrigger className="hover:text-indigo-400 transition-colors bg-gray-800 hover:bg-gray-700">
+    <>
+      <NavigationMenuTrigger className="hover:text-indigo-400 transition-colors bg-gray-800/50 hover:bg-gray-700/50 backdrop-blur-md">
         Genres
       </NavigationMenuTrigger>
-      <NavigationMenuContent className="p-4 bg-gray-800 rounded-md">
+      <NavigationMenuContent className="p-4 bg-gray-800/70 backdrop-blur-md rounded-md">
         <ul className="grid gap-2 text-gray-100">
           {genres.map((genre) => (
             <li key={genre.id}>
@@ -66,9 +65,10 @@ const GenreDropdown = React.memo(() => {
           ))}
         </ul>
       </NavigationMenuContent>
-    </NavigationMenuItem>
+    </>
   );
 });
+GenreDropdown.displayName = "GenreDropdown";
 
 // ================= Navigation Menu =================
 const NavMenu = React.memo(() => {
@@ -79,7 +79,6 @@ const NavMenu = React.memo(() => {
     ],
     []
   );
-  NavMenu.displayName = "NavMenu";
 
   return (
     <NavigationMenu className="hidden md:flex">
@@ -96,11 +95,15 @@ const NavMenu = React.memo(() => {
             </NavigationMenuLink>
           </NavigationMenuItem>
         ))}
-        <GenreDropdown />
+
+        <NavigationMenuItem>
+          <GenreDropdown />
+        </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   );
 });
+NavMenu.displayName = "NavMenu";
 
 // ================= Search Section =================
 const ProfileSection = React.memo(() => (
@@ -113,12 +116,13 @@ ProfileSection.displayName = "ProfileSection";
 // ================= Header =================
 export default function Header() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-gray-800 bg-gray-900/95 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto flex h-16 items-center justify-between px-4 md:px-8 text-gray-100">
-        <div className="flex items-center gap-6">
-          <Logo />
-          <NavMenu />
-        </div>
+    <header className="fixed top-0 left-0 right-0 z-50 bg-gray-900/40 backdrop-blur-xl shadow-lg border-b border-gray-700">
+  {/* Make this flex container full width */}
+  <div className="w-full flex items-center justify-between h-16 px-4 md:px-8 text-gray-100">
+    <div className="flex items-center gap-6">
+      <Logo />
+      <NavMenu />
+    </div>
 
         <ProfileSection />
 

@@ -1,19 +1,18 @@
 'use client';
 
-import { Instagram, Twitter, Linkedin, Github } from 'lucide-react';
+import { Linkedin, Github, Mail } from 'lucide-react';
 
 const socialLinks = [
-  { icon: Twitter, href: "https://twitter.com", color: "hover:text-indigo-500" },
-  { icon: Instagram, href: "https://instagram.com", color: "hover:text-pink-500" },
-  { icon: Linkedin, href: "https://linkedin.com", color: "hover:text-blue-500" },
-  { icon: Github, href: "https://github.com", color: "hover:text-gray-300" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/vishnu-karanth-3ba772229", color: "hover:text-blue-500" },
+  { icon: Github, href: "https://github.com/vishnukaranth/", color: "hover:text-gray-300" },
+  { icon: Mail, href: "mailto:vishnukaranth07@gmail.com", color: "hover:text-red-400" },
 ];
 
 const quickLinks = [
   { label: "Home", href: "/" },
-  { label: "Trending", href: "/trending" },
-  { label: "Genres", href: "/genres" },
-  { label: "About Us", href: "/about" },
+  // { label: "Trending", href: "/trending" },
+  // { label: "Genres", href: "/genres" },
+  { label: "About Me", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -55,23 +54,21 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Newsletter */}
+        {/* Contact Me Section */}
         <div className="flex flex-col gap-4 max-w-sm md:flex-1">
-          <h3 className="text-lg font-semibold">Subscribe to Newsletter</h3>
-          <p className="text-gray-400">Get updates about trending movies and new releases.</p>
-          <form className="flex flex-col sm:flex-row gap-2">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-2 rounded-md bg-gray-800 border border-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-white"
-            />
-            <button
-              type="submit"
-              className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-md font-medium transition"
-            >
-              Subscribe
-            </button>
-          </form>
+          <h3 className="text-lg font-semibold">Contact Me</h3>
+          <p className="text-gray-400">
+            I’m a fresher and learning new things every day.  
+            Feel free to reach out for opportunities or collaborations.
+          </p>
+
+          {/* Email Button */}
+          <a
+            href="mailto:vishnukaranth04@gmail.com"
+            className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-md font-medium transition text-center"
+          >
+            📧 Send me an Email
+          </a>
         </div>
       </div>
 

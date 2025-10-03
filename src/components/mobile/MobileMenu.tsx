@@ -2,7 +2,13 @@
 
 import { Menu } from "lucide-react";
 import { Button } from "../ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetTitle,
+} from "../ui/sheet";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import React, { useMemo, useCallback } from "react";
 
 // ================= Mobile Menu =================
@@ -38,13 +44,20 @@ export function MobileMenu() {
 
   return (
     <Sheet>
+      {/* Trigger button */}
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" className="text-gray-100">
           <Menu className="h-6 w-6" />
         </Button>
       </SheetTrigger>
 
+      {/* Sheet (Drawer) Content */}
       <SheetContent side="left" className="w-64 bg-gray-900 text-gray-100">
+        {/* Hidden title for accessibility */}
+        <SheetTitle>
+          <VisuallyHidden>Mobile Navigation Menu</VisuallyHidden>
+        </SheetTitle>
+
         <div className="flex flex-col gap-4 mt-6">
           {/* Main Links */}
           {menuLinks.map((link) => (
