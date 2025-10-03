@@ -38,7 +38,7 @@ npm install
 yarn install
 ```
 
-3. Create a `.env` file in the root directory:
+3. Create a `.env` file in the root directory: (Note: Get your TMDB key from here: https://www.themoviedb.org/documentation/api)
 ```env
 NEXT_PUBLIC_TMDB_API_KEY=your_tmdb_api_key_here
 ```
