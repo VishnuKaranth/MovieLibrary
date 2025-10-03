@@ -66,12 +66,18 @@ export const WatchlistProvider = ({ children }: { children: ReactNode }) => {
 
   // Load from localStorage on mount
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    const stored = localStorage.getItem(WATCHLIST_STORAGE_KEY);
-    const initial = stored ? JSON.parse(stored) : [];
-    managerRef.current = new WatchlistManager(initial);
-    setWatchlist(managerRef.current.getAll());
-  }, []);
+  if (typeof window === "undefined") return;
+  const stored = localStorage.getItem(WATCHLIST_STORAGE_KEY);
+  let initial: Movie[] = [];
+  try {
+    initial = stored ? (JSON.parse(stored) as Movie[]) : [];
+  } catch {
+    initial = [];
+  }
+  managerRef.current = new WatchlistManager(initial);
+  setWatchlist(managerRef.current.getAll());
+}, []);
+
 
   // Persist to localStorage
   useEffect(() => {

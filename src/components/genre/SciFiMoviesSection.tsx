@@ -66,7 +66,7 @@ export default function SciFiMoviesSection() {
     }
   }, []);
 
-  useEffect(() => { loadMovies(); }, [loadMovies]);
+  useEffect(() => { loadMovies().catch(console.error); }, [loadMovies]);
 
   // Autoplay
   useEffect(() => {

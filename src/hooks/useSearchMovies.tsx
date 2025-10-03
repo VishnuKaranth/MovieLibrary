@@ -27,7 +27,7 @@ export function useSearchMovies(query: string) {
       }
     };
 
-    fetchData();
+    fetchData().catch(console.error);
   }, [query]);
 
   return { movies, loading, error: null };

@@ -20,7 +20,7 @@ export async function fetchTrendingMovies(): Promise<Movie[]> {
     throw new Error("Failed to fetch trending movies");
   }
 
-  const data: MovieResponse = await res.json();
+  const data = (await res.json()) as MovieResponse;
 
   return Array.isArray(data.results) ? data.results : [];
 }
@@ -32,7 +32,7 @@ export async function fetchMoviesByGenre(genreId: number): Promise<Movie[]> {
 
   if (!res.ok) throw new Error("Failed to fetch movies");
 
-  const data: MovieResponse = await res.json();
+  const data = (await res.json()) as MovieResponse;
 
   return Array.isArray(data.results) ? data.results : [];
 }
@@ -46,7 +46,6 @@ export async function searchMovies(query: string): Promise<MovieResponse> {
 
   if (!res.ok) throw new Error("Failed to search movies");
 
-  const data: MovieResponse = await res.json();
-
+  const data = (await res.json()) as MovieResponse;
   return { results: Array.isArray(data.results) ? data.results : [] };
 }

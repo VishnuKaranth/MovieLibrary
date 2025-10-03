@@ -1,29 +1,144 @@
-# Create T3 App
+# 🎬 MovieLibrary
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+A modern web application for browsing movies and managing your personal watchlist. Built with Next.js 13+, TypeScript, and Tailwind CSS, MovieLibrary offers a sleek interface to discover trending movies, search for specific titles, and maintain a personalized watchlist.
 
-## What's next? How do I make an app with this?
+![MovieLibrary Screenshot](public/screenshot.png)
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## ✨ Features
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+- Browse trending movies with an auto-playing carousel
+- Explore movies by genres (Action, Comedy, Drama, Horror, Sci-Fi)
+- Search movies with real-time suggestions
+- Add/remove movies to/from your watchlist
+- Persistent watchlist using localStorage
+- Responsive design with mobile-first approach
+- Loading states and error handling
+- Toast notifications for user feedback
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+## 🚀 Getting Started
 
-## Learn More
+### Prerequisites
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+- Node.js 18+ 
+- npm or yarn
+- A TMDB API key (get it from [TMDB](https://www.themoviedb.org/documentation/api))
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+### Installation
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+1. Clone the repository:
+```bash
+git clone https://github.com/VishnuKaranth/MovieLibrary.git
+cd MovieLibrary
+```
 
-## How do I deploy this?
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+3. Create a `.env` file in the root directory:
+```env
+NEXT_PUBLIC_TMDB_API_KEY=your_tmdb_api_key_here
+```
+
+4. Start the development server:
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## 🧪 Testing
+
+The project uses Jest and React Testing Library for testing. To run the tests:
+
+```bash
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm test -- --watch
+
+# Run tests with coverage
+npm test -- --coverage
+```
+
+### Test Structure
+- Component tests are located in `__tests__` directories next to the components
+- Test files follow the naming convention: `ComponentName.test.tsx`
+
+## 🏗 Project Structure
+
+```
+src/
+├── app/                    # Next.js 13+ App Router pages
+├── components/            # React components
+│   ├── carousel/         # Movie carousel components
+│   ├── genre/           # Genre-specific components
+│   ├── moviecard/       # Movie card component
+│   ├── search/          # Search components
+│   └── watchlist/       # Watchlist components
+├── hooks/               # Custom React hooks
+├── lib/                 # Utility functions and API
+└── styles/             # Global styles
+```
+
+## 🎯 Design Choices & Assumptions
+
+### Architecture
+- Used Next.js 13+ App Router for modern routing and server components
+- Implemented React Context for global state management
+- Created reusable components for consistency
+- Used OOP principles with service classes for API interactions
+
+### State Management
+- Watchlist state managed through React Context
+- Local storage for persistence
+- Real-time state updates with optimistic UI
+
+### UI/UX
+- Dark theme for better movie browsing experience
+- Loading skeletons for better perceived performance
+- Toast notifications for user feedback
+- Responsive design for all screen sizes
+
+### API Integration
+- TMDB API for movie data
+- Error handling for failed API calls
+- Debounced search to prevent API spam
+- Image optimization using TMDB's different image sizes
+
+### Performance
+- Lazy loading of images
+- Debounced search
+- Memoized components where beneficial
+- Client-side caching of watchlist data
+
+## 🛠 Technologies Used
+
+- Next.js 13+
+- TypeScript
+- Tailwind CSS
+- React Testing Library
+- Jest
+- Embla Carousel
+- Lucide Icons
+- Sonner (Toast notifications)
+
+## 📝 License
+
+This project is MIT licensed.
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request

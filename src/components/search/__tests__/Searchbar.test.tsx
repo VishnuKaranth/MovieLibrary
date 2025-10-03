@@ -1,13 +1,11 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import { SearchBar } from '../Searchbar'
+import * as nextNavigation from 'next/navigation'
+import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 
-// Mock the next/navigation module
+// Mock next/navigation initially
 jest.mock('next/navigation', () => ({
-  useRouter() {
-    return {
-      push: jest.fn(),
-    }
-  },
+  useRouter: jest.fn(),
 }))
 
 describe('SearchBar', () => {
@@ -22,20 +20,20 @@ describe('SearchBar', () => {
   })
 
   it('submits search on form submit', () => {
-    const router = { push: jest.fn() }
-    jest.spyOn(require('next/navigation'), 'useRouter').mockReturnValue(router)
+    // Type-safe mock router
+    const router: Partial<AppRouterInstance> = {
+      push: jest.fn(),
+    }
+
+    jest.spyOn(nextNavigation, 'useRouter').mockReturnValue(router as AppRouterInstance)
 
     render(<SearchBar />)
     const form = screen.getByPlaceholderText('Search movies...').closest('form')!
     const input = screen.getByPlaceholderText('Search movies...')
 
-    // Type in search
     fireEvent.change(input, { target: { value: 'test query' } })
-
-    // Submit form
     fireEvent.submit(form)
 
-    // Verify navigation
     expect(router.push).toHaveBeenCalledWith('/search?query=test%20query')
   })
 })

@@ -8,7 +8,7 @@ import { Input } from '../ui/input';
 import { type Movie } from '~/hooks/WatchlistContext';
 
 /** Custom debounce hook */
-function useDebounce(callback: (...args: any[]) => void, delay: number, dependencies: any[]) {
+function useDebounce<T extends (...args: never[]) => void>(callback: T,delay: number,dependencies: unknown[]) {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -21,6 +21,7 @@ function useDebounce(callback: (...args: any[]) => void, delay: number, dependen
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies);
 }
+
 
 export function SearchBar() {
   const [query, setQuery] = useState('');
@@ -54,7 +55,9 @@ export function SearchBar() {
   }, [query]);
 
   // Debounced search
-  useDebounce(fetchSuggestions, 300, [query, fetchSuggestions]);
+  useDebounce(() => { 
+    void fetchSuggestions(); },
+   300, [query, fetchSuggestions]);
 
   /** Handle keyboard navigation */
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

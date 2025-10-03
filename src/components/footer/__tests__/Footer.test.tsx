@@ -19,7 +19,7 @@ describe('Footer', () => {
     ]
 
     const allLinks = screen.getAllByRole('link')
-    const socialLinksInDoc = allLinks.filter(link => socialLinks.includes(link.getAttribute('href') || ''))
+    const socialLinksInDoc = allLinks.filter(link => socialLinks.includes(link.getAttribute('href') ?? ''))
     expect(socialLinksInDoc).toHaveLength(socialLinks.length)
   })
 

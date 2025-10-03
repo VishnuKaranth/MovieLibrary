@@ -10,7 +10,7 @@ export default function ContactPage() {
         <h1 className="text-3xl font-bold mb-4">Contact Me</h1>
         <p className="mb-6 text-gray-300">
           Thank you for trying out my project! 😊 <br />
-          I’m a fresher and I'm trying to learn new things every day. <br />
+          I&apos;m a fresher and I&apos;m trying to learn new things every day. <br />
           Feel free to reach out to me:
         </p>
 
