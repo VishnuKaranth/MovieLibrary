@@ -129,10 +129,6 @@ src/
 - Lucide Icons
 - Sonner (Toast notifications)
 
-## 📝 License
-
-This project is MIT licensed.
-
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
